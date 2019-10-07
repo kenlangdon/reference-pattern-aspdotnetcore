@@ -14,11 +14,11 @@ stages:
     - task: vsts-habitat-signing-key@3
       displayName: 'Signing Origin Key: install'
       inputs:
-        habitatOrigin: ken
+        habitatOrigin: 'Habitat Depot'
     - task: vsts-habitat-build@3
       displayName: 'Build Habitat plan'
       inputs:
-        habitatOrigin: ken
+        habitatOrigin: 'Habitat Depot'
       env:
         HAB_LICENSE: accept-no-persist
     - task: vsts-habitat-expose-habitat-build-vars@3
@@ -43,7 +43,7 @@ stages:
           - task: vsts-habitat-signing-key@3
             displayName: 'Signing Origin Key: install'
             inputs:
-              habitatOrigin: ken
+              habitatOrigin: 'Habitat Depot'
           - task: PowerShell@2
             inputs:
               targetType: 'inline'
@@ -54,7 +54,7 @@ stages:
           - task: vsts-habitat-pkg-upload@3
             displayName: 'Package Upload'
             inputs:
-              habitatOrigin: ken
+              habitatOrigin: 'Habitat Depot'
               habitatPackagePath: '$(Pipeline.Workspace)/hart/$(pkg_artifact)'
               habitatPackageChannel: dev
             env:
@@ -75,7 +75,7 @@ stages:
           - task: vsts-habitat-signing-key@3
             displayName: 'Signing Origin Key: install'
             inputs:
-              habitatOrigin: ken
+              habitatOrigin: 'Habitat Depot'
           - powershell: |
               . $(Pipeline.Workspace)/hart/last_build.ps1
               C:\ProgramData\habitat\hab.exe pkg promote $pkg_ident stage
@@ -98,7 +98,7 @@ stages:
           - task: vsts-habitat-signing-key@3
             displayName: 'Signing Origin Key: install'
             inputs:
-              habitatOrigin: ken
+              habitatOrigin: 'Habitat Depot'
           - script: 'C:\ProgramData\habitat\hab.exe license accept'
             displayName: 'Accept Hab license'
           - powershell: |
